@@ -25,10 +25,11 @@ public class MainController {
 //    }
 
     @PostMapping("/register")
-    public String register(@RequestBody User user) {
+    public void register(@RequestBody User user) {
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         user.setRoles("ROLE_USER");
         repository.save(user);
-        return "회원가입로직";
+        System.out.println("회원가입로직");
+        //return "회원가입로직";
     }
 }

@@ -157,8 +157,14 @@
         //        console.log(res.data);
         //      });
         const response = await registerUser(userData);
-        console.log(userData.email+ userData.password);
-        this.logMessage = `${response.data.email}님이 가입되었습니다.`;
+        // console.log(userData.email+ userData.password);
+        const data = JSON.parse(response.config.data);
+        // console.log(data.email+data.password);
+        // this.logMessage = `${response.data.email}님이 가입되었습니다.`;
+        if(userData.email === data.email && userData.password === data.password ) {
+          alert("회원가입에 성공했습니다.");
+          this.$router.push("/login");
+        }
         this.initForm();
       },
       initForm() {
