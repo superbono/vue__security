@@ -30,7 +30,7 @@
 <!--              </div>-->
               <div class="col-lg-4 col-md-6 ml-auto mr-auto" style="margin-top: -35px">
 <!--                <p style="color: #fff">아이디: test@test.com / 비밀번호: 1234</p>-->
-                <form @submit.prevent="login">
+                <form @submit.prevent="submitForm">
 <!--                  <card type="login" style="width: 380px; height: 529px; background: #2f2f37">-->
                   <card type="regist" style="width: 380px; height: 529px; background: #2f2f37; opacity: 0.75">
                     <!--                  <h3 slot="header" class="header text-center">Login</h3>-->
@@ -79,6 +79,8 @@
   import { Card, Checkbox, Button, InfoSection } from 'src/components/UIComponents';
   import formMixin from "@/mixins/form-mixin";
   import ValidationError from "src/components/UIComponents/ValidationError.vue";
+  import { registerUser } from "@/api/auth";
+
   export default {
     mixins: [formMixin],
     components: {
@@ -98,47 +100,64 @@
         password: null,
         nickname: null,
         password_confirmation: null,
+        logMessage: null
       };
     },
     methods: {
-      async register() {
-        if (!this.boolean) {
-          await this.$notify({
-            type: 'danger',
-            message: 'You need to agree with our terms and conditions.',
-          })
-          return;
+      // async register() {
+      //   if (!this.boolean) {
+      //     await this.$notify({
+      //       type: 'danger',
+      //       message: 'You need to agree with our terms and conditions.',
+      //     })
+      //     return;
+      //   }
+      //   const user = {
+      //     data: {
+      //       type: "token",
+      //       attributes: {
+      //         name: this.name,
+      //         email: this.email,
+      //         password: this.password,
+      //         password_confirmation: this.password_confirmation,
+      //       },
+      //     },
+      //   };
+      //   const requestOptions = {
+      //     headers: {
+      //       Accept: "application/vnd.api+json",
+      //       "Content-Type": "application/vnd.api+json",
+      //     },
+      //   };
+      //   try {
+      //     await this.$store.dispatch("register", { user, requestOptions });
+      //     this.$notify({
+      //       type: 'success',
+      //       message: 'Successfully registered.',
+      //     })
+      //   } catch (error) {
+      //     this.$notify({
+      //       type: 'danger',
+      //       message: 'Oops, something went wrong!',
+      //     })
+      //     this.setApiValidation(error.response.data.errors);
+      //   }
+      // },
+      async submitForm() {
+        console.log('regist 시작!');
+        const userData = {
+          email: this.email,
+          password: this.password,
+          nickname: this.nickname
         }
-        const user = {
-          data: {
-            type: "token",
-            attributes: {
-              name: this.name,
-              email: this.email,
-              password: this.password,
-              password_confirmation: this.password_confirmation,
-            },
-          },
-        };
-        const requestOptions = {
-          headers: {
-            Accept: "application/vnd.api+json",
-            "Content-Type": "application/vnd.api+json",
-          },
-        };
-        try {
-          await this.$store.dispatch("register", { user, requestOptions });
-          this.$notify({
-            type: 'success',
-            message: 'Successfully registered.',
-          })
-        } catch (error) {
-          this.$notify({
-            type: 'danger',
-            message: 'Oops, something went wrong!',
-          })
-          this.setApiValidation(error.response.data.errors);
-        }
+        const { data } = await registerUser(userData);
+        console.log(data.email+", "+data.password);
+        this.initForm();
+      },
+      initForm() {
+        this.email = '';
+        this.password = '';
+        this.nickname = '';
       },
       toggleNavbar() {
         document.body.classList.toggle('nav-open')
