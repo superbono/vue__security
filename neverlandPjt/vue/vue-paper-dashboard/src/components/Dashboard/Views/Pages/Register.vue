@@ -32,7 +32,7 @@
 <!--                <p style="color: #fff">아이디: test@test.com / 비밀번호: 1234</p>-->
                 <form @submit.prevent="submitForm">
 <!--                  <card type="login" style="width: 380px; height: 529px; background: #2f2f37">-->
-                  <card type="regist" style="width: 380px; height: 529px; background: #2f2f37; opacity: 0.75">
+                  <card type="register" style="width: 380px; height: 529px; background: #2f2f37; opacity: 0.75">
                     <!--                  <h3 slot="header" class="header text-center">Login</h3>-->
                     <div style="margin-bottom: -160px; width: 200px; height: 50px; text-align: center; margin-top: 80px;">
 <!--                      <img :src="require(`@/assets/img/pincar_logo.png`)" style="margin-left: 70px;">-->
@@ -80,6 +80,7 @@
   import formMixin from "@/mixins/form-mixin";
   import ValidationError from "src/components/UIComponents/ValidationError.vue";
   import { registerUser } from "@/api/auth";
+  // import axios from "axios";
 
   export default {
     mixins: [formMixin],
@@ -99,7 +100,7 @@
         email: null,
         password: null,
         nickname: null,
-        password_confirmation: null,
+        // password_confirmation: null,
         logMessage: null
       };
     },
@@ -144,14 +145,20 @@
       //   }
       // },
       async submitForm() {
-        console.log('regist 시작!');
+        console.log('submit');
+        console.log("완료료료");
         const userData = {
           email: this.email,
           password: this.password,
-          nickname: this.nickname
-        }
-        const { data } = await registerUser(userData);
-        console.log(data.email+", "+data.password);
+          nickname: this.nickname,
+        };
+        // axios.post('http://localhost:8090/api/register')
+        //      .then(res=>{
+        //        console.log(res.data);
+        //      });
+        const response = await registerUser(userData);
+        console.log(userData.email+ userData.password);
+        this.logMessage = `${response.data.email}님이 가입되었습니다.`;
         this.initForm();
       },
       initForm() {

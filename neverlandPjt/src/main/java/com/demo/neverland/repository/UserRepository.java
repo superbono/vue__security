@@ -1,4 +1,9 @@
 package com.demo.neverland.repository;
 
-public class UserRepository {
+
+import com.demo.neverland.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Integer> {
+    User findByEmail(String email);
 }

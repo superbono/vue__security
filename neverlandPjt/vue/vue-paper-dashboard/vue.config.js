@@ -33,6 +33,13 @@ module.exports = {
   indexPath: "../../resources/static/index.html",
   devServer: {
     proxy: "http://localhost:8090"
+    // proxy: {
+    //   '^/api': {
+    //     target: 'http://localhost:8090',
+    //     changeOrigin: true,
+    //     logLevel: 'debug',
+    //   },
+    // }
   },
   chainWebpack: config => {
     const svgRule = config.module.rule("svg");
