@@ -1,3 +1,17 @@
 
-  server:
-    port: 8081
+    server:
+        port: 8090
+
+    spring:
+        datasource:
+            driver-class-name: com.mysql.cj.jdbc.Driver
+            url: jdbc:mysql://localhost:3306/neverland?serverTimezone=Asia/Seoul
+            username: root
+            password: root
+        jpa:
+            hibernate:
+              ddl-auto: create
+              naming:
+                  pphysical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+            show-sql: true
+

@@ -43,7 +43,7 @@
                       <input type="checkbox" style="margin-left: 2px;"><span style="color: #fff; font-size: 11px; margin-left: 7px; vertical-align: 2px;">아이디 저장</span>
                       <span style="color: #fff; font-size: 12px; margin-left: 27px; vertical-align: 2px; color: #a0a0a0"><a href="#" style="color: #a0a0a0; text-decoration: none;">아이디,비밀번호 찾기</a></span>
                       <span style="color: #fff; font-size: 12px; margin-left: 5px; vertical-align: 2px; color: #a0a0a0"> | </span>
-                      <span style="color: #fff; font-size: 12px; margin-left: 5px; vertical-align: 2px;"><a href="http://localhost:8090/register" style="color: #a0a0a0; text-decoration: none;">회원가입 신청</a></span>
+                      <span style="color: #fff; font-size: 12px; margin-left: 5px; vertical-align: 2px;"><a href="/register" style="color: #a0a0a0; text-decoration: none;">회원가입 신청</a></span>
                     </div>
                   </div>
                 </card>
