@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -45,5 +46,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .access("hasRole('ROLE_ADMIN')")
                 .anyRequest().permitAll();
 
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/assets/**");    //.addResourceLocations( "classpath:static/assets/" );
+        web.ignoring().antMatchers("/css/**");    //.addResourceLocations( "classpath:static/css/" );
+        web.ignoring().antMatchers("/images/**");    //.addResourceLocations( "classpath:static/images/" );
+        web.ignoring().antMatchers("/js/**");        //.addResourceLocations( "classpath:static/js/" );
+
+        // For Swagger-ui
+        web.ignoring().antMatchers("/swagger**");
+        web.ignoring().antMatchers("/v2/api-docs/**");
     }
 }

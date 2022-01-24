@@ -19,11 +19,6 @@ public class MainController {
         return "테스트 완료";
     }
 
-//    @GetMapping("/register")
-//    public String regist() {
-//        return "회원가입로직";
-//    }
-
     @PostMapping("/register")
     public void register(@RequestBody User user) {
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
@@ -32,4 +27,9 @@ public class MainController {
         System.out.println("회원가입로직");
         //return "회원가입로직";
     }
+
+//    @GetMapping("/login")
+//    public String login(@RequestBody User user) {
+//        return "로그인 완료";
+//    }
 }
