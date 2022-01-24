@@ -6,7 +6,7 @@
   "author": "cristi.jora <joracristi@gmail.com>",
   "scripts": {
     "build": "vue-cli-service build",
-    "dev": "vue-cli-service serve --open --port 3000"
+    "dev": "vue-cli-service serve --open --port 3010"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^23.1.0",
