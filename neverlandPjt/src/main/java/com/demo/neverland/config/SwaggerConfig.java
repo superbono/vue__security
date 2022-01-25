@@ -22,7 +22,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("NEVERLAND Project 1.0")
                 .description("언어: Java 11.0.3" + "</br>"  +
-                             "백엔드: Springboot + Security => IntelliJ" + "</br>"  +
+                             "백엔드: Springboot + Security + Jwt => IntelliJ" + "</br>"  +
                              "프론트: Vue.js [template + router + vuex + api] => IntelliJ " + "</br>" +
                              "DB: Mysql => Mysql Client + Workbench + DBeaver" + "</br>" +
                              "프로젝트 Description: Notion" + "</br>" +

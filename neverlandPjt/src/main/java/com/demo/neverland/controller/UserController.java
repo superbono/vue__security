@@ -1,6 +1,7 @@
 package com.demo.neverland.controller;
 
 import com.demo.neverland.model.User;
+import com.demo.neverland.model.dto.LoginDto;
 import com.demo.neverland.model.dto.UserDto;
 import com.demo.neverland.repository.UserRepository;
 import io.swagger.annotations.Api;
@@ -41,7 +42,7 @@ public class UserController {
 
     @GetMapping("/login")
     @ApiOperation(value = "[로그인]", notes = "로그인을 위한 API입니다. email/ password를 입력하고 실행해주세요.")
-    public String login(@RequestBody User user) {
+    public String login(@RequestBody LoginDto user) {
         return "로그인 완료";
     }
 }
