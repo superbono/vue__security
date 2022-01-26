@@ -60,7 +60,8 @@ let componentsMenu = {
     {
       path: 'buttons',
       name: 'Buttons',
-      component: Buttons
+      component: Buttons,
+      meta: { auth: true }
     },
     {
       path: 'grid-system',

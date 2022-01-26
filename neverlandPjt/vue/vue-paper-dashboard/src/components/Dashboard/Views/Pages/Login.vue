@@ -81,7 +81,8 @@
       // email: "admin@jsonapi.com",
       // password: "secret",
       username: "",
-      password: ""
+      password: "",
+      statusCode: ""
     }
   },
   methods: {
@@ -92,20 +93,36 @@
       document.body.classList.remove('nav-open')
       document.body.classList.remove('off-canvas-sidebar')
     },
-    async submitForm() {
+    async submitForm(response) {
       try {
         const userData = {
           username: this.username,
           password: this.password,
         };
         await this.$store.dispatch('LOGIN', userData);
-        this.$router.push('/components/buttons');
+        this.initForm();
+        console.log(response);
+        // this.$router.push('/components/buttons');
       } catch (error) {
         console.log(error.response);
+        // console.log(error.response.data.status);
+        this.statusCode = error.response.data.status
         this.logMessage = '로그인에 실패했습니다.';
         this.$router.push('/login');
-      } finally {
         this.initForm();
+        return false;
+      } finally {
+        console.log(this.statusCode);
+        if(this.statusCode !== 500) {
+          this.$store.commit("setUsername", this.username);
+          this.$router.push('/components/buttons');
+          this.initForm();
+        } else if(this.statusCode == 500) {
+          // this.initForm();
+          alert('로그인 실패했습니다. 유저정보와 비밀번호를 확인해주세요.');
+          this.statusCode = "";
+          console.log(this.statusCode);
+        }
       }
     },
     // async login() {

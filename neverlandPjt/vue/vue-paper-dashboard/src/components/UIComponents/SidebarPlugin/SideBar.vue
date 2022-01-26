@@ -21,7 +21,7 @@
 <!--      >-->
       <a
           class="simple-text logo-normal"
-          href="http://localhost:8090/components/buttons"
+          href="http://localhost:3010/components/buttons"
           style="font-size: 30px; font-weight: bold"
       >
 <!--        {{ title }}-->

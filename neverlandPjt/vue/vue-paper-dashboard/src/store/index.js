@@ -30,6 +30,7 @@ export default new Vuex.Store ({
   state: {
     username: '',
     token: '',
+    loginOk: false
   },
   getters: {
     isLogin(state) {

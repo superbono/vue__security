@@ -72,13 +72,15 @@
 <!--        >-->
 <!--        </sidebar-item>-->
 <!--        <span style="color: #fff">asdffds</span>-->
-        <drop-down
-            icon="nc-icon nc-settings-gear-65"
-            tag="li"
-            position="right"
-            direction="none"
-            class="nav-item btn-rotate dropdown"
-        >
+<!--        <drop-down-->
+<!--            icon="nc-icon nc-settings-gear-65"-->
+<!--            tag="li"-->
+<!--            position="right"-->
+<!--            direction="none"-->
+<!--            class="nav-item btn-rotate dropdown"-->
+<!--        >-->
+
+        <!-- 상담관련 로직  -->
         <sidebar-item
             :link="{
             name: '상담',
@@ -101,16 +103,17 @@
 <!--              <span class="d-lg-none d-md-block">Profile</span>-->
 <!--            </p>-->
           </a>
-          <a class="dropdown-item" href="http://localhost:8090/components/cs-new" @click="goToProfile">상담등록</a>
-          <a class="dropdown-item" @click="logout" href="http://localhost:8090/components/cs-contract">상담계약</a>
-        </drop-down>
-        <drop-down
-            icon="nc-icon nc-settings-gear-65"
-            tag="li"
-            position="right"
-            direction="none"
-            class="nav-item btn-rotate dropdown"
-        >
+<!--          <a class="dropdown-item" href="http://localhost:8090/components/cs-new" @click="goToProfile">상담등록</a>-->
+<!--          <a class="dropdown-item" @click="logout" href="http://localhost:8090/components/cs-contract">상담계약</a>-->
+<!--        </drop-down>-->
+<!--        <drop-down-->
+<!--            icon="nc-icon nc-settings-gear-65"-->
+<!--            tag="li"-->
+<!--            position="right"-->
+<!--            direction="none"-->
+<!--            class="nav-item btn-rotate dropdown"-->
+<!--        >-->
+        <!-- 계약관련 로직  -->
         <sidebar-item
           :link="{
             name: '계약',
@@ -134,16 +137,19 @@
 <!--              <span class="d-lg-none d-md-block">Profile</span>-->
 <!--            </p>-->
           </a>
-          <a class="dropdown-item" href="http://localhost:8090/table-list/ct-new" @click="goToProfile">계약등록</a>
-          <a class="dropdown-item" @click="logout" href="http://localhost:8090/table-list/ct-refer">계약조회</a>
-        </drop-down>
-        <drop-down
-            icon="nc-icon nc-settings-gear-65"
-            tag="li"
-            position="right"
-            direction="none"
-            class="nav-item btn-rotate dropdown"
-        >
+<!--          <a class="dropdown-item" href="http://localhost:8090/table-list/ct-new" @click="goToProfile">계약등록</a>-->
+<!--          <a class="dropdown-item" @click="logout" href="http://localhost:8090/table-list/ct-refer">계약조회</a>-->
+<!--        </drop-down>-->
+<!--        <drop-down-->
+<!--            icon="nc-icon nc-settings-gear-65"-->
+<!--            tag="li"-->
+<!--            position="right"-->
+<!--            direction="none"-->
+<!--            class="nav-item btn-rotate dropdown"-->
+<!--        >-->
+
+        <!-- 인도관련 로직  -->
+
         <sidebar-item
           :link="{
             name: '인도',
@@ -166,16 +172,19 @@
 <!--              <span class="d-lg-none d-md-block">Profile</span>-->
 <!--            </p>-->
           </a>
-          <a class="dropdown-item" href="http://localhost:8090/table-list/cd-new" @click="goToProfile">인도등록</a>
-          <a class="dropdown-item" @click="logout" href="http://localhost:8090/table-list/cd-refer">인도현황</a>
-        </drop-down>
-        <drop-down
-            icon="nc-icon nc-settings-gear-65"
-            tag="li"
-            position="right"
-            direction="none"
-            class="nav-item btn-rotate dropdown"
-        >
+<!--          <a class="dropdown-item" href="http://localhost:8090/table-list/cd-new" @click="goToProfile">인도등록</a>-->
+<!--          <a class="dropdown-item" @click="logout" href="http://localhost:8090/table-list/cd-refer">인도현황</a>-->
+<!--        </drop-down>-->
+<!--        <drop-down-->
+<!--            icon="nc-icon nc-settings-gear-65"-->
+<!--            tag="li"-->
+<!--            position="right"-->
+<!--            direction="none"-->
+<!--            class="nav-item btn-rotate dropdown"-->
+<!--        >-->
+
+        <!-- 통계관련 로직  -->
+
         <sidebar-item
           :link="{
             name: '통계',
@@ -198,16 +207,19 @@
             <!--              <span class="d-lg-none d-md-block">Profile</span>-->
             <!--            </p>-->
           </a>
-          <a class="dropdown-item" href="http://localhost:8090/table-list/ct-status" @click="goToProfile">총 계약현황</a>
-          <a class="dropdown-item" @click="logout" href="http://localhost:8090/table-list/cd-status">총 인도현황</a>
-        </drop-down>
-        <drop-down
-            icon="nc-icon nc-settings-gear-65"
-            tag="li"
-            position="right"
-            direction="none"
-            class="nav-item btn-rotate dropdown"
-        >
+<!--          <a class="dropdown-item" href="http://localhost:8090/table-list/ct-status" @click="goToProfile">총 계약현황</a>-->
+<!--          <a class="dropdown-item" @click="logout" href="http://localhost:8090/table-list/cd-status">총 인도현황</a>-->
+<!--        </drop-down>-->
+<!--        <drop-down-->
+<!--            icon="nc-icon nc-settings-gear-65"-->
+<!--            tag="li"-->
+<!--            position="right"-->
+<!--            direction="none"-->
+<!--            class="nav-item btn-rotate dropdown"-->
+<!--        >-->
+
+        <!-- 통계관련 로직  -->
+
         <sidebar-item
           :link="{
             name: '관리자관리',
@@ -230,9 +242,9 @@
             <!--              <span class="d-lg-none d-md-block">Profile</span>-->
             <!--            </p>-->
           </a>
-          <a class="dropdown-item" href="http://localhost:8090/table-list/ct-status" @click="goToProfile">총 계약현황</a>
-          <a class="dropdown-item" @click="logout" href="http://localhost:8090/table-list/cd-status">총 인도현황</a>
-        </drop-down>
+<!--          <a class="dropdown-item" href="http://localhost:8090/table-list/ct-status" @click="goToProfile">총 계약현황</a>-->
+<!--          <a class="dropdown-item" @click="logout" href="http://localhost:8090/table-list/cd-status">총 인도현황</a>-->
+<!--        </drop-down>-->
 <!--        <sidebar-item-->
 <!--          :link="{-->
 <!--            name: 'Upgrade to PRO',-->
