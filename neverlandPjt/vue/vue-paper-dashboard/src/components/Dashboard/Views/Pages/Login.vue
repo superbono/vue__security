@@ -93,7 +93,7 @@
       document.body.classList.remove('nav-open')
       document.body.classList.remove('off-canvas-sidebar')
     },
-    async submitForm(response) {
+    async submitForm() {
       try {
         const userData = {
           username: this.username,
@@ -101,7 +101,6 @@
         };
         await this.$store.dispatch('LOGIN', userData);
         this.initForm();
-        console.log(response);
         // this.$router.push('/components/buttons');
       } catch (error) {
         console.log(error.response);
@@ -115,7 +114,7 @@
         console.log(this.statusCode);
         if(this.statusCode !== 500) {
           this.$store.commit("setUsername", this.username);
-          this.$router.push('/components/buttons');
+          this.$router.push('/components/typography');
           this.initForm();
         } else if(this.statusCode == 500) {
           // this.initForm();

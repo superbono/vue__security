@@ -96,7 +96,7 @@
             </p>
           </a>
           <a class="dropdown-item" href="#" @click="goToProfile">프로필관리</a>
-          <a class="dropdown-item" @click="logout">로그아웃</a>
+          <a class="dropdown-item" href="http://localhost:3010/login" onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</a>
         </drop-down>
         </template>
       </ul>
@@ -125,12 +125,10 @@ export default {
     goToProfile() {
       this.$router.push({ name: "User Profile" });
     },
-    logout() {
+    // logout() {
+      // this.$router.push({ name: "Login" });
       // this.$store.dispatch("logout");
-      if(confirm("로그아웃 하시겠습니까?")) {
-        this.$router.push("/login");
-      }
-    },
+    // },
     capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
     },
