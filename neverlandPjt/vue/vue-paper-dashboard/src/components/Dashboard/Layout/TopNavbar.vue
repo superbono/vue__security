@@ -68,10 +68,10 @@
 <!--          </a>-->
 <!--        </li>-->
 <!--        z-->
-        <div href="http://localhost:8090/login" style="margin-top: 10px; margin-right: 20px;"><span style="font-weight: bold">{{ email }}</span>님, 환영합니다.</div>
-        <template v-if="email != email">
+<!--        <div href="http://localhost:3010/login" style="margin-top: 10px; margin-right: 20px;"><span style="font-weight: bold">{{ username }}</span>님, 환영합니다.</div>-->
+        <template v-if="username != username">
           <button>
-          <a href="http://localhost:8090/login">로그인</a>
+          <a href="http://localhost:3010/login">로그인</a>
           </button>
         </template>
         <template v-else>
@@ -115,7 +115,8 @@ export default {
   },
   data() {
     return {
-      email: 'test@test.com',
+      // username: 'test@test.com',
+      username: this.$store.getters.getUsername,
       activeNotifications: false,
       showNavbar: false,
     };

@@ -19,15 +19,15 @@
 <!--        href="https://www.creative-tim.com/vue-paper-dashboard-laravel"-->
 <!--        style="font-size: 30px; font-weight: bold"-->
 <!--      >-->
-      <a
-          class="simple-text logo-normal"
-          href="http://localhost:8090/components/buttons"
-          style="font-size: 30px; font-weight: bold"
-      >
+<!--      <a-->
+<!--          class="simple-text logo-normal"-->
+<!--          href="http://localhost:3010/components/buttons"-->
+<!--          style="font-size: 30px; font-weight: bold"-->
+<!--      >-->
 <!--        {{ title }}-->
         <div style="width: 150px;height: 80px">
 <!--          <img :src="require(`@/assets/img/pincar_logo.png`)">-->
-          <img :src="require(`@/assets/img/logo_white.png`)" style="margin-left: -25px; opacity: .6; margin-top: -40px;">
+          <img :src="require(`@/assets/img/logo_white.png`)" style="margin-left: -25px; opacity: .6; margin-top: -20px;">
         </div>
       </a>
     </div>

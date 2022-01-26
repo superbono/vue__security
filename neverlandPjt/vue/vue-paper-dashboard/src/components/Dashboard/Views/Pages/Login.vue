@@ -99,12 +99,16 @@
           password: this.password,
         };
         await this.$store.dispatch('LOGIN', userData);
-        this.$router.push('/components/buttons');
+        //alert("로그인에 성공했습니다.");
+        //this.$router.push('/components/buttons');
       } catch (error) {
         console.log(error.response);
         this.logMessage = '로그인에 실패했습니다.';
         this.$router.push('/login');
       } finally {
+        //console.log(this.username);
+        this.$store.commit("setUsername", this.username);
+        this.$router.push('/components/buttons');
         this.initForm();
       }
     },
