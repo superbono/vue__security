@@ -42,7 +42,7 @@
                     <!--                  border-radius: 3px;-->
                     <!--                  border: solid 1px #505050;-->
                     <!--                  background-color: #2f2f37;-->
-                    <fg-input v-model="email" placeholder="이메일" style="margin-top: 220px; padding: 0 30px; background-color: #2f2f37; "/>
+                    <fg-input v-model="username" placeholder="이메일" style="margin-top: 220px; padding: 0 30px; background-color: #2f2f37; "/>
                     <validation-error :errors="apiValidationErrors.email" />
                     <fg-input v-model="password" placeholder="비밀번호" type="password" style="padding: 0 30px;"/>
                     <validation-error :errors="apiValidationErrors.password" />
@@ -97,7 +97,7 @@
       return {
         name: null,
         boolean: false,
-        email: null,
+        username: null,
         password: null,
         nickname: null,
         // password_confirmation: null,
@@ -148,7 +148,7 @@
         console.log('submit');
         console.log("완료료료");
         const userData = {
-          email: this.email,
+          username: this.username,
           password: this.password,
           nickname: this.nickname,
         };
@@ -161,14 +161,14 @@
         const data = JSON.parse(response.config.data);
         // console.log(data.email+data.password);
         // this.logMessage = `${response.data.email}님이 가입되었습니다.`;
-        if(userData.email === data.email && userData.password === data.password ) {
+        if(userData.username === data.username && userData.password === data.password ) {
           alert("회원가입에 성공했습니다.");
           this.$router.push("/login");
         }
         this.initForm();
       },
       initForm() {
-        this.email = '';
+        this.username = '';
         this.password = '';
         this.nickname = '';
       },

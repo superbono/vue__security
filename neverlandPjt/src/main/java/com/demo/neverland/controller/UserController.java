@@ -1,48 +1,68 @@
 package com.demo.neverland.controller;
 
+import java.util.List;
+
+import com.demo.neverland.config.auth.PrincipalDetails;
 import com.demo.neverland.model.User;
-import com.demo.neverland.model.dto.LoginDto;
-import com.demo.neverland.model.dto.UserDto;
 import com.demo.neverland.repository.UserRepository;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api")
-@CrossOrigin
-@Api(tags = {"회원가입 및 로그인"})
+//@RequestMapping("/api")
+@RequiredArgsConstructor
+// @CrossOrigin  // CORS 허용
 public class UserController {
 
-    @Autowired
-    private UserRepository repository;
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-//    @GetMapping("/test")
-//    @ApiOperation(value = "")
-//    public String test() {
-//        return "테스트 완료";
-//    }
+    // 모든 사람이 접근 가능
+    @GetMapping("/home")
+    public String home() {
+        return "<h1>home</h1>";
+    }
+
+    // Tip : JWT를 사용하면 UserDetailsService를 호출하지 않기 때문에 @AuthenticationPrincipal 사용 불가능.
+    // 왜냐하면 @AuthenticationPrincipal은 UserDetailsService에서 리턴될 때 만들어지기 때문이다.
+
+    // 유저 혹은 매니저 혹은 어드민이 접근 가능
+    @GetMapping("/user")
+    public String user(Authentication authentication) {
+        PrincipalDetails principal = (PrincipalDetails) authentication.getPrincipal();
+        System.out.println("principal : "+principal.getUser().getId());
+        System.out.println("principal : "+principal.getUser().getUsername());
+        System.out.println("principal : "+principal.getUser().getPassword());
+
+        return "<h1>user</h1>";
+    }
+
+    // 매니저 혹은 어드민이 접근 가능
+    @GetMapping("/manager/reports")
+    public String reports() {
+        return "<h1>reports</h1>";
+    }
+
+    // 어드민이 접근 가능
+    @GetMapping("/admin/users")
+    public List<User> users(){
+        return userRepository.findAll();
+    }
 
     @PostMapping("/register")
-    @ApiOperation(value = "[회원가입]", notes = "회원가입을 위한 API입니다. email/ password/ nickname을 입력하고 실행해주세요.")
-//    public void register(User user, @RequestParam("email") String email, @RequestParam("password") String password) {
-    public void register(@RequestBody UserDto user) {
-        User newUser = User.builder()
-                .email(user.getEmail())
-                .password(new BCryptPasswordEncoder().encode(user.getPassword()))
-                .nickname(user.getNickname())
-                .roles("ROLE_USER")
-                .build();
-        repository.save(newUser);
-        System.out.println("회원가입로직");
-        //return "회원가입로직";
+    public String join(@RequestBody User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setRoles("ROLE_USER");
+        userRepository.save(user);
+        return "회원가입완료";
     }
 
-    @GetMapping("/login")
-    @ApiOperation(value = "[로그인]", notes = "로그인을 위한 API입니다. email/ password를 입력하고 실행해주세요.")
-    public String login(@RequestBody LoginDto user) {
-        return "로그인 완료";
-    }
 }

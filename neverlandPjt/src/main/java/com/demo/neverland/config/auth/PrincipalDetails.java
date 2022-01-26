@@ -10,7 +10,6 @@ import java.util.Collection;
 
 public class PrincipalDetails implements UserDetails {
 
-    @Autowired
     private User user;
 
     public PrincipalDetails(User user) {
@@ -35,8 +34,12 @@ public class PrincipalDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return user.getUsername();
     }
+
+//    public String getEmail() {
+//        return user.getEmail();
+//    }
 
     @Override
     public boolean isAccountNonExpired() {

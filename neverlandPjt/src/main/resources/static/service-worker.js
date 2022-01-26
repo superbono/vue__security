@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.93bfb31d969b38a007865025349fe8a4.js"
+  "/precache-manifest.054f43fdf082d80cfaea72c536b9e620.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "vue-paper-dashboard-pro"});

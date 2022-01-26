@@ -1,9 +1,6 @@
 package com.demo.neverland.model;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,13 +10,14 @@ import java.util.List;
 @Data
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 public class User extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(length = 100)
-    private String email;
+    private String username;
     @Column(length = 100)
     private String password;
     @Column(length = 100)
@@ -34,8 +32,8 @@ public class User extends BaseEntity {
     }
 
     @Builder
-    public User(String email, String password, String nickname, String roles) {
-        this.email = email;
+    public User(String username, String password, String nickname, String roles) {
+        this.username = username;
         this.password = password;
         this.nickname = nickname;
         this.roles = roles;

@@ -28,7 +28,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store ({
   state: {
-    email: '',
+    username: '',
     token: '',
   },
   getters: {
@@ -55,6 +55,7 @@ export default new Vuex.Store ({
       const { data } = await loginUser(userData);
       console.log(data.user.email);
       commit('setToken', data.token);
+      console.log(state.token);
       commit('setUsername', data.user.email);
       // saveAuthToCookie(data.token);
       // saveUserToCookie(data.user.email);

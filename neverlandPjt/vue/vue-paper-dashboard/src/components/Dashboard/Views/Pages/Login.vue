@@ -21,7 +21,7 @@
             </div>
             <div class="col-lg-4 col-md-6 ml-auto mr-auto"  style="margin-top: -47px">
 <!--              <p style="color: #fff">아이디: test@test.com / 비밀번호: 1234</p>-->
-              <form @submit.prevent="login">
+              <form @submit.prevent="submitForm">
                 <card type="login" style="width: 380px; height: 529px; background: #2f2f37; opacity: 0.75">
 <!--                  <h3 slot="header" class="header text-center">Login</h3>-->
                     <div style="margin-bottom: -160px; width: 200px; height: 50px; text-align: center; margin-top: 80px;">
@@ -31,7 +31,7 @@
 <!--                  border-radius: 3px;-->
 <!--                  border: solid 1px #505050;-->
 <!--                  background-color: #2f2f37;-->
-                  <fg-input v-model="email" placeholder="아이디" style="margin-top: 240px; padding: 0 30px;"/>
+                  <fg-input v-model="username" placeholder="아이디" style="margin-top: 240px; padding: 0 30px;"/>
                   <validation-error :errors="apiValidationErrors.email" />
                   <fg-input v-model="password" placeholder="비밀번호" type="password" style="padding: 0 30px;"/>
                   <validation-error :errors="apiValidationErrors.password" />
@@ -65,8 +65,9 @@
   import AppFooter from './Layout/AppFooter'
   import formMixin from "@/mixins/form-mixin";
   import ValidationError from "src/components/UIComponents/ValidationError.vue";
+  import { loginUser } from "@/api/auth";
 
-export default {
+  export default {
   mixins: [formMixin],
   components: {
     Card,
@@ -79,7 +80,7 @@ export default {
     return {
       // email: "admin@jsonapi.com",
       // password: "secret",
-      email: "",
+      username: "",
       password: ""
     }
   },
@@ -90,6 +91,22 @@ export default {
     closeMenu() {
       document.body.classList.remove('nav-open')
       document.body.classList.remove('off-canvas-sidebar')
+    },
+    async submitForm() {
+      try {
+        const userData = {
+          username: this.username,
+          password: this.password,
+        };
+        await this.$store.dispatch('LOGIN', userData);
+        this.$router.push('/components/buttons');
+      } catch (error) {
+        console.log(error.response);
+        this.logMessage = '로그인에 실패했습니다.';
+        this.$router.push('/login');
+      } finally {
+        this.initForm();
+      }
     },
     // async login() {
     //   const user = {
@@ -119,28 +136,28 @@ export default {
     //     this.setApiValidation(e.response.data.errors)
     //   }
     // }
-    login() {
-      const email = this.email;
-      const password = this.password;
-
-      if(email == "test@test.com" && password == "1234") {
-        console.log('로그인 성공');
-        alert('로그인 성공');
-        this.$router.push("/components/typography");
-      } else if(email != "test@test.com") {
-        console.log('회원이 아닙니다.');
-        alert('회원이 아닙니다.');
-        if(confirm('회원가입페이지로 이동할까요?')) {
-          this.$router.push('/register');
-        }
-      } else if(email == "test@test.com" && password != "1234") {
-        console.log('비밀번호가 틀립니다.');
-        alert('비밀번호가 틀립니다.');
-      }
-
-      console.log(email, password);
-
-    }
+    // login() {
+    //   const email = this.email;
+    //   const password = this.password;
+    //
+    //   if(email == "test@test.com" && password == "1234") {
+    //     console.log('로그인 성공');
+    //     alert('로그인 성공');
+    //     this.$router.push("/components/typography");
+    //   } else if(email != "test@test.com") {
+    //     console.log('회원이 아닙니다.');
+    //     alert('회원이 아닙니다.');
+    //     if(confirm('회원가입페이지로 이동할까요?')) {
+    //       this.$router.push('/register');
+    //     }
+    //   } else if(email == "test@test.com" && password != "1234") {
+    //     console.log('비밀번호가 틀립니다.');
+    //     alert('비밀번호가 틀립니다.');
+    //   }
+    //
+    //   console.log(email, password);
+    //
+    // }
   },
   beforeDestroy() {
     this.closeMenu()
