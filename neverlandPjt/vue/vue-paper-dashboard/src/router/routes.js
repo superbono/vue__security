@@ -91,7 +91,7 @@ let componentsMenu = {
     {
       path: 'typography',
       name: 'Typography',
-      component: Typography
+      component: Typography,
     },
     {
       path: 'cs-contract',

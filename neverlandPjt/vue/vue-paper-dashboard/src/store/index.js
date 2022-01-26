@@ -33,16 +33,25 @@ export default new Vuex.Store ({
     loginOk: false
   },
   getters: {
+    // isState() {
+    //   return state.username !== '' ? true : false;
+    // },
     isLogin(state) {
-      return state.email !== '';
+      return state.username !== '' ? true : false;
+    },
+    getUsername(state) {
+      return state.username;
+    },
+    getToken(state) {
+      return state.token;
     }
   },
   mutations: {
-    setUsername(state, email) {
-      state.email = email;
+    setUsername(state, username) {
+      state.username = username;
     },
-    clearUsername(state, email) {
-      state.email = '';
+    clearUsername(state, username) {
+      state.username = '';
     },
     setToken(state, token) {
       state.token = token;
@@ -54,10 +63,10 @@ export default new Vuex.Store ({
   actions: {
     async LOGIN({ commit }, userData) {
       const { data } = await loginUser(userData);
-      console.log(data.user.email);
+      console.log(data.user.username);
       commit('setToken', data.token);
       console.log(state.token);
-      commit('setUsername', data.user.email);
+      commit('setUsername', data.user.username);
       // saveAuthToCookie(data.token);
       // saveUserToCookie(data.user.email);
       return data;
